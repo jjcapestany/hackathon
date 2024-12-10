@@ -1,0 +1,13 @@
+# docker-compose is only used for local/test development
+version: "3.8"
+services:
+  postgres-db:
+    container_name: hackathon_dashboard
+    image: postgres # use latest official postgres version
+    restart: always
+    environment:
+      POSTGRES_USER: hackathon
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hackathon_dashboard_dev
+    ports:
+      - "5432:5432"
