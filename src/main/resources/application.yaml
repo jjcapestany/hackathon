@@ -3,6 +3,6 @@ spring:
     name: hackathon
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgres://localhost:5432/hackathon_dashboard_dev
+    url: jdbc:postgresql://localhost:5450/hackathon_dev
     username: hackathon
     password: password
