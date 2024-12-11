@@ -11,7 +11,7 @@ import java.util.List;
 public class PathResultDTO {
     private boolean pathFound;
     private String transportationType;
-    private int totalDistance;
+    private int totalDistance = Integer.MAX_VALUE;
     private List<String> cityNames;
     private List<RouteDTO> routes;
 }

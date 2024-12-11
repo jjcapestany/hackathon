@@ -66,7 +66,7 @@ public class RouteService {
         for (AdjacencyMapEntity entity : allMaps) {
             AdjacencyMap sourceMap = cityToMapMapping.get(entity.getOriginCity());
             for (RouteEntity route : entity.getRoutes()) {
-                AdjacencyMap destMap = cityToMapMapping.get(route.getDestinationMap().getOriginCity());
+                AdjacencyMap destMap = route.getDestinationMap() != null ? cityToMapMapping.get(route.getDestinationMap().getOriginCity()): null;
                 if (destMap != null) {  // Safety check
                     sourceMap.addDestination(destMap, route.getCost(), route.getTransportationType());
                 }
@@ -78,7 +78,13 @@ public class RouteService {
 
     private PathResultDTO convertToDTO(Graph.PathResult result) {
         if (!result.isPathFound()) {
-            return new PathResultDTO(false, result.getTransportationType(), 0, new ArrayList<>(), new ArrayList<>());
+            return new PathResultDTO(
+                    false,
+                    result.getTransportationType(),
+                    Integer.MAX_VALUE,  // Changed from 0 to Integer.MAX_VALUE
+                    new ArrayList<>(),
+                    new ArrayList<>()
+            );
         }
 
         List<String> cityNames = result.getPath().stream()
@@ -104,6 +110,7 @@ public class RouteService {
                 routes
         );
     }
+
     public RouteDTO createRoute(RouteDTO routeDTO) {
         City sourceCity = cityRepository.findByCityName(routeDTO.getSourceCityName())
                 .orElseThrow(() -> new EntityNotFoundException("Source city not found: " + routeDTO.getSourceCityName()));
@@ -139,6 +146,22 @@ public class RouteService {
                 destCity.getCityName(),
                 savedRoute.getTransportationType(),
                 savedRoute.getCost()
+        );
+    }
+
+    public List<RouteDTO> getAllRoutes() {
+        return routeRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private RouteDTO convertToDTO(RouteEntity route) {
+        return new RouteDTO(
+                route.getId(),
+                route.getSourceMap().getOriginCity().getCityName(),
+                route.getDestinationMap().getOriginCity().getCityName(),
+                route.getTransportationType(),
+                route.getCost()
         );
     }
 }
