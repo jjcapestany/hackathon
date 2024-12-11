@@ -12,15 +12,26 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Asset extends AssetType {
+public class AssetType {
+
+    public enum AssetTravelType {
+        AIR,
+        GROUND,
+        SEA
+    }
+
+    public enum AssetStatus {
+        STANDBY,
+        ENR
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long waterOnhand;
-    private Long foodOnhand;
-    private Long medicalOnhand;
-    @ManyToOne
-    private City location;
-    private AssetStatus status;
-    private Long travelDaysRemaining;
+    private AssetTravelType modeOfTravel;
+    private Long waterCapacity;
+    private Long foodCapacity;
+    private Long aidCapacity;
+    private Double fuelUsageRate;
+    private Long speed;
 }

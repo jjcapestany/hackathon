@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aid {
+public class Medical {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

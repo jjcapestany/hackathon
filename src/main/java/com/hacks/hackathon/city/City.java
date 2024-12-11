@@ -1,6 +1,6 @@
 package com.hacks.hackathon.city;
 
-import com.hacks.hackathon.resources.Aid;
+import com.hacks.hackathon.resources.Medical;
 import com.hacks.hackathon.resources.Food;
 import com.hacks.hackathon.resources.Water;
 import jakarta.persistence.*;
@@ -27,7 +27,7 @@ public class City {
     private Water water;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Aid aid;
+    private Medical medical;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Food food;
