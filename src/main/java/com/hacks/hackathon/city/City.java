@@ -1,10 +1,11 @@
 package com.hacks.hackathon.city;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.hacks.hackathon.resources.Aid;
+import com.hacks.hackathon.resources.Food;
+import com.hacks.hackathon.resources.Water;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Setter
@@ -20,4 +21,14 @@ public class City {
     private int population;
     private int xAxis;
     private int yAxis;
+    private int fuel;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Water water;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Aid aid;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Food food;
 }
