@@ -15,16 +15,6 @@ import org.hibernate.annotations.CascadeType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class City {
-    public City(String name, Integer population, Integer xCoord, Integer yCoord, Long fuel, Water water, Medical medical, Food food) {
-        this.name = name;
-        this.population = population;
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
-        this.fuel = fuel;
-        this.water = water;
-        this.medical = medical;
-        this.food = food;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +22,8 @@ public class City {
     @Column(name = "name")
     private String name;
     private Integer population;
-    private Integer xCoord;
-    private Integer yCoord;
+    private Double xCoord;
+    private Double yCoord;
     private Long fuel;
     @OneToOne
     @Cascade(CascadeType.ALL)
