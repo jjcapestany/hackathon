@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import Cities from "./city/Cities.tsx";
 
 const Map = () => {
+    const stageWidth = window.innerWidth;
+    const stageHeight = window.innerHeight;
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
 
     useEffect(() => {
@@ -14,16 +16,16 @@ const Map = () => {
     }, []);
 
     return (
-        <Stage width={window.innerWidth} height={window.innerHeight}>
+        <Stage width={stageWidth} height={stageHeight}>
             <Layer>
                 <Image
                     image={backgroundImage}
-                    width={window.innerWidth}
-                    height={window.innerHeight}
+                    width={stageWidth}
+                    height={stageHeight}
                     listening={false} // Ensures the background doesn't interfere with other interactions
                 />
             </Layer>
-            <Cities/>
+            <Cities stageWidth={stageWidth} stageHeight={stageHeight}/>
         </Stage>
     )
 }
