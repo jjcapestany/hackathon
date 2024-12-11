@@ -46,17 +46,17 @@ class RouteServiceTest {
     void setUp() {
         coralReef = new City();
         coralReef.setId(1L);
-        coralReef.setCityName("Coral Reef Community");
+        coralReef.setName("Coral Reef Community");
         coralReef.setPopulation(150000);
 
         City mangrove = new City();
         mangrove.setId(4L);
-        mangrove.setCityName("Mangrove Coastline");
+        mangrove.setName("Mangrove Coastline");
         mangrove.setPopulation(350000);
 
         lagoonBay = new City();
         lagoonBay.setId(5L);
-        lagoonBay.setCityName("Lagoon Bay Village");
+        lagoonBay.setName("Lagoon Bay Village");
         lagoonBay.setPopulation(130000);
 
         coralReefMap = new AdjacencyMapEntity();

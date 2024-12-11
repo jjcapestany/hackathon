@@ -29,16 +29,16 @@ public class AdjacencyMap {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdjacencyMap that = (AdjacencyMap) o;
-        return Objects.equals(originCity.getCityName(), that.originCity.getCityName());
+        return Objects.equals(originCity.getName(), that.originCity.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(originCity.getCityName());
+        return Objects.hash(originCity.getName());
     }
 
     @Override
     public String toString() {
-        return originCity.getCityName();
+        return originCity.getName();
     }
 }

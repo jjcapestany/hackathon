@@ -17,7 +17,7 @@ class CityServiceTest {
 
     @Test
     void getsAllCities() {
-        List<City> mockCities = List.of(City.builder().cityName("new").id(1L).population(2).build());
+        List<City> mockCities = List.of(City.builder().name("new").id(1L).population(2).build());
         cityRepo.saveAll(mockCities);
         List<City> cities = cityService.getAllCities();
         assertEquals(mockCities.size(), cities.size());

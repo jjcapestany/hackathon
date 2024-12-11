@@ -32,12 +32,12 @@ public class CityControllerTest {
 
     @Test
     public void createCityTest() throws Exception {
-        City testCity = City.builder().cityName("Turtleback Island").population(30000).build();
+        City testCity = City.builder().name("Turtleback Island").population(30000).build();
         cityRepo.saveAll(List.of(testCity));
             when(cityRepo.save(testCity)).thenReturn(testCity);
         mockMvc.perform(get("/api/city"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].cityName").value(testCity.getCityName()))
+                .andExpect(jsonPath("$[0].name").value(testCity.getName()))
                 .andExpect(jsonPath("$[0].population").value(testCity.getPopulation()));
     }
 }

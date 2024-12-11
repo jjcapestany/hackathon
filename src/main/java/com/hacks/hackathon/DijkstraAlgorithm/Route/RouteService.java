@@ -4,8 +4,7 @@ import com.hacks.hackathon.DijkstraAlgorithm.AdjacencyMap.AdjacencyMap;
 import com.hacks.hackathon.DijkstraAlgorithm.AdjacencyMap.AdjacencyMapEntity;
 import com.hacks.hackathon.DijkstraAlgorithm.AdjacencyMap.AdjacencyMapRepository;
 import com.hacks.hackathon.DijkstraAlgorithm.*;
-import com.hacks.hackathon.city.City;
-import com.hacks.hackathon.city.CityRepo;
+import com.hacks.hackathon.city.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -88,15 +87,15 @@ public class RouteService {
         }
 
         List<String> cityNames = result.getPath().stream()
-                .map(City::getCityName)
+                .map(City::getName)
                 .collect(Collectors.toList());
 
         List<RouteDTO> routes = new ArrayList<>();
         for (int i = 0; i < result.getPath().size() - 1; i++) {
             routes.add(new RouteDTO(
                     null,
-                    result.getPath().get(i).getCityName(),
-                    result.getPath().get(i + 1).getCityName(),
+                    result.getPath().get(i).getName(),
+                    result.getPath().get(i + 1).getName(),
                     result.getTransportationType(),
                     null // Cost will be filled from database
             ));
@@ -142,8 +141,8 @@ public class RouteService {
 
         return new RouteDTO(
                 savedRoute.getId(),
-                sourceCity.getCityName(),
-                destCity.getCityName(),
+                sourceCity.getName(),
+                destCity.getName(),
                 savedRoute.getTransportationType(),
                 savedRoute.getCost()
         );
@@ -158,8 +157,8 @@ public class RouteService {
     private RouteDTO convertToDTO(RouteEntity route) {
         return new RouteDTO(
                 route.getId(),
-                route.getSourceMap().getOriginCity().getCityName(),
-                route.getDestinationMap().getOriginCity().getCityName(),
+                route.getSourceMap().getOriginCity().getName(),
+                route.getDestinationMap().getOriginCity().getName(),
                 route.getTransportationType(),
                 route.getCost()
         );

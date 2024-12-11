@@ -34,7 +34,7 @@ public class Graph {
             }
             return String.format("Path found via %s, total distance: %d, route: %s",
                     transportationType, totalDistance,
-                    path.stream().map(City::getCityName).collect(Collectors.joining(" -> ")));
+                    path.stream().map(City::getName).collect(Collectors.joining(" -> ")));
         }
     }
 
@@ -111,7 +111,7 @@ public class Graph {
             AdjacencyMap currentNode = getLowestDistanceNode(unsettledNodes);
 
             // Check if we've reached the destination
-            if (currentNode.getOriginCity().getCityName().equals(destinationCity.getCityName())) {
+            if (currentNode.getOriginCity().getName().equals(destinationCity.getName())) {
                 destinationNode = currentNode;
                 break;  // We found the destination, no need to continue
             }
