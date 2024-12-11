@@ -18,4 +18,6 @@ public class City {
     private Long id;
     private String cityName;
     private int population;
+    private int xAxis;
+    private int yAxis;
 }

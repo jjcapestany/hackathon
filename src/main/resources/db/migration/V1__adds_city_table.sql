@@ -2,7 +2,9 @@ create table IF NOT EXISTS city
 (
     id integer,
     city_name varchar(50),
-    population integer
+    population integer,
+    x_axis integer,
+    y_axis integer
     );
 INSERT INTO public.city (id, city_name, population)
 VALUES (1, 'Coral Reef Community',150000);
