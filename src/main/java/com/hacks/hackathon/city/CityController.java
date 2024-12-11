@@ -21,11 +21,4 @@ public class CityController {
         List<City> cities = cityRepo.findAll();
         return ResponseEntity.ok(cities);
     }
-
-
-//    @GetMapping
-//    public ResponseEntity<List<EntryDTO>> findEntriesBySoldierId(@RequestParam(name = "soldierId") Long soldierId) {
-//        List<EntryDTO> entries = service.findAllEntriesBySoldierId(soldierId);
-//        return ResponseEntity.ok(entries);
-//    }
 }
