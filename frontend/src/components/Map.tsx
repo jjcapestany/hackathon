@@ -1,24 +1,17 @@
-import {Stack} from "@mui/material";
-import {useEffect, useState} from "react";
-import {City, getCity} from "./city/CityClient.ts";
-
+import { Stage, Layer, Rect, Circle } from 'react-konva';
 
 const Map = () => {
-
-    const [city, setCity] = useState<City>({cityName: "", population: 0})
-
-    useEffect(() => {
-        getCity().then(setCity)
-        console.log(city)
-    }, []);
     return (
-        <Stack height="110vh" width={"110vw"} sx={{
-            backgroundImage: `url(./island_map.png)`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
-        }}>
-        </Stack>
+        // Stage - is a div wrapper
+        // Layer - is an actual 2d canvas element, so you can have several layers inside the stage
+        // Rect and Circle are not DOM elements. They are 2d shapes on canvas
+        <Stage width={window.innerWidth} height={window.innerHeight}>
+            <Layer>
+                <Rect width={50} height={50} fill="red" />
+                <Circle x={200} y={200} stroke="black" radius={50} />
+            </Layer>
+        </Stage>
     );
-};
+}
 
 export default Map;

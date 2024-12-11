@@ -10,6 +10,11 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "keywords": [
+    "canvas",
+    "react",
+    "konva"
+  ],
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -22,9 +27,11 @@
     "axios": "^1.7.9",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
+    "konva": "^9.3.16",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-konva": "^19.0.1",
     "react-leaflet": "^4.2.1",
     "vitest": "^2.1.8"
   },
