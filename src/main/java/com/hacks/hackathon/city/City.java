@@ -17,10 +17,10 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String cityName;
+    private String name;
     private int population;
-    private int xAxis;
-    private int yAxis;
+    private int xCoord;
+    private int yCoord;
     private int fuel;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
