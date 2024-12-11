@@ -2,6 +2,7 @@ import {Stage, Layer, Image} from 'react-konva';
 import {useEffect, useState} from "react";
 import Cities from "./city/Cities.tsx";
 import {City, getCity} from "./city/CityClient.ts";
+import IconExamples from "./IconExamples.tsx";
 
 const Map = () => {
     const stageWidth = window.innerWidth;
@@ -31,6 +32,7 @@ const Map = () => {
                 />
             </Layer>
             <Cities stageWidth={stageWidth} stageHeight={stageHeight}/>
+            <Layer><IconExamples /></Layer>
         </Stage>
     )
 }
