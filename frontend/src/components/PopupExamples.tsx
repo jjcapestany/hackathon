@@ -1,6 +1,12 @@
 import {Group, Rect, Text} from "react-konva";
+import {useState} from "react";
 
 const PopupExamples = () => {
+    const cityOptions = ["City A", "City B", "City C", "City D", "City E"];
+    const aidOptions = ["Water", "Food", "Medical"];
+    const transportOptions = ["Air", "Sea", "Land"];
+    const [aidAmount, setAidAmount] = useState("");
+
     return (
         <>
             {/* Example for City Status */}
@@ -47,7 +53,6 @@ const PopupExamples = () => {
                         console.log("closed")}}
                     style={{ cursor: "pointer" }}
                 />
-
                 {/* Button at the Bottom */}
                 <Group
                     x={50} // Center the button horizontally
@@ -71,6 +76,148 @@ const PopupExamples = () => {
                         y={8} // Center text within the button
                     />
                 </Group>
+            </Group>
+
+            {/* Aid Transfer Popup */}
+            <Group x={100} y={100} draggable={true}>
+                {/* Background Rectangle */}
+                <Rect
+                    width={300}
+                    height={300}
+                    fill="#f5f5f5"
+                    cornerRadius={10}
+                />
+
+                {/* Title */}
+                <Text
+                    text="Transfer Aid"
+                    fontSize={16}
+                    fontStyle="bold"
+                    fill="#333"
+                    x={10}
+                    y={10}
+                />
+
+                {/* Close Button */}
+                <Text
+                    text="X"
+                    fontSize={14}
+                    fill="black"
+                    x={270}
+                    y={10}
+                    onClick={() => {
+                        console.log("onClose")}}
+                    style={{ cursor: "pointer" }}
+                />
+
+                {/* Destination City Selector */}
+                <Text
+                    text="Select City:"
+                    fontSize={14}
+                    fill="#333"
+                    x={10}
+                    y={50}
+                />
+                {cityOptions.map((city, index) => (
+                    <Text
+                        key={city}
+                        text={city}
+                        fontSize={12}
+                        fill="#555"
+                        x={20}
+                        y={70 + index * 20}
+                        onClick={() => console.log(`City selected: ${city}`)}
+                        style={{ cursor: "pointer" }}
+                    />
+                ))}
+
+                {/* Aid Type Selector */}
+                <Text
+                    text="Aid Type:"
+                    fontSize={14}
+                    fill="#333"
+                    x={150}
+                    y={50}
+                />
+                {aidOptions.map((aid, index) => (
+                    <Text
+                        key={aid}
+                        text={aid}
+                        fontSize={12}
+                        fill="#555"
+                        x={160}
+                        y={70 + index * 20}
+                        onClick={() => console.log(`Aid selected: ${aid}`)}
+                        style={{ cursor: "pointer" }}
+                    />
+                ))}
+
+                {/* Transport Selector */}
+                <Text
+                    text="Transport:"
+                    fontSize={14}
+                    fill="#333"
+                    x={10}
+                    y={170}
+                />
+                {transportOptions.map((transport, index) => (
+                    <Text
+                        key={transport}
+                        text={transport}
+                        fontSize={12}
+                        fill="#555"
+                        x={20}
+                        y={190 + index * 20}
+                        onClick={() =>
+                            console.log(`Transport selected: ${transport}`)
+                        }
+                        style={{ cursor: "pointer" }}
+                    />
+                ))}
+                {/* Aid Amount Input */}
+                <Text
+                    text="Amount:"
+                    fontSize={14}
+                    fill="#333"
+                    x={150}
+                    y={190}
+                />
+                <Text
+                    text={aidAmount || "Enter amount"}
+                    fontSize={12}
+                    fill="#555"
+                    x={160}
+                    y={210}
+                    onClick={() => {
+                        const amount = prompt("Enter aid amount:");
+                        if (amount) setAidAmount(amount);
+                    }}
+                    style={{ cursor: "pointer" }}
+                />
+                {/* Submit Button */}
+                <Rect
+                    x={100}
+                    y={260}
+                    width={100}
+                    height={30}
+                    fill="#ffcc01"
+                    cornerRadius={5}
+                    onClick={() => {
+                        "handleSubmit"
+                    }}
+                    style={{ cursor: "pointer" }}
+                />
+                <Text
+                    text="Submit"
+                    fontSize={14}
+                    fill="black"
+                    x={125}
+                    y={267}
+                    onClick={() => {
+                        "handleSubmit"
+                    }}
+                    style={{ cursor: "pointer" }}
+                />
             </Group>
         </>
     )
