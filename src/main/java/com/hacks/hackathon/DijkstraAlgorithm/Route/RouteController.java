@@ -7,24 +7,34 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/routes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class RouteController {
     private final RouteService routeService;
 
-    @GetMapping("/shortest-path")
-    public ResponseEntity<PathResultDTO> findShortestPath(
-            @RequestParam Long sourceCityId,
-            @RequestParam Long destCityId,
-            @RequestParam String transportationType) {
-        PathResultDTO result = routeService.findShortestPath(sourceCityId, destCityId, transportationType);
-        return ResponseEntity.ok(result);
+    // Route endpoints
+    @PostMapping()
+    public ResponseEntity<RouteDTO> createRoute(@RequestBody RouteDTO routeDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(routeService.createRoute(routeDTO));
     }
 
-    @PostMapping
-    public ResponseEntity<RouteDTO> createRoute(@RequestBody RouteDTO routeDTO) {
-        RouteDTO created = routeService.createRoute(routeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    @GetMapping()
+    public ResponseEntity<List<RouteDTO>> getAllRoutes() {
+        return ResponseEntity.ok(routeService.getAllRoutes());
+    }
+
+    // Path finding endpoints
+    @GetMapping("/shortest-path/{sourceCityId}/{destCityId}/{transportationType}")
+    public ResponseEntity<PathResultDTO> findShortestPath(
+            @PathVariable Long sourceCityId,
+            @PathVariable Long destCityId,
+            @PathVariable String transportationType) {
+        return ResponseEntity.ok(
+                routeService.findShortestPath(sourceCityId, destCityId, transportationType));
     }
 }
