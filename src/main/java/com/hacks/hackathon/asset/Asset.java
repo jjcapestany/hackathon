@@ -12,15 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Asset extends AssetType {
+public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private AssetType assetType;
     private Long waterOnhand;
     private Long foodOnhand;
     private Long medicalOnhand;
     @ManyToOne
     private City location;
-    private AssetStatus status;
+    private AssetType.AssetStatus status;
     private Long travelDaysRemaining;
 }

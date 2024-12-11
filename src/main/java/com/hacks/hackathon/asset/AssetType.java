@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AssetType {
+public abstract class AssetType {
 
     public enum AssetTravelType {
         AIR,
