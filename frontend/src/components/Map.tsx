@@ -33,7 +33,7 @@ const Map = () => {
                     listening={false} // Ensures the background doesn't interfere with other interactions
                 />
             </Layer>
-            <Cities stageWidth={stageWidth} stageHeight={stageHeight}/>
+            <Cities stageWidth={stageWidth} stageHeight={stageHeight} cities={city}/>
             <Layer><IconExamples /></Layer>
             <Layer><PopupExamples /></Layer>
         </Stage>

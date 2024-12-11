@@ -1,15 +1,27 @@
 import {Layer, Circle} from "react-konva";
+import {City} from "./CityClient.ts";
+import CityStatusModal from "./CityStatusModal.tsx";
+import {useState} from "react";
 
 type CitiesProps = {
     stageWidth: number,
-    stageHeight: number
+    stageHeight: number,
+    cities: City[]
 }
 
-const Cities= ({stageWidth, stageHeight} : CitiesProps) => {
+const Cities= ({stageWidth, stageHeight, cities} : CitiesProps) => {
+    const [isCityStatusOpen, setIsCityStatusOpen] = useState(false);
+    const [cityStatusContent, setCityStatusContent] = useState<City>({id: 1, cityName: "yep", population: 1, xAxis: 1, yAxis: 1})
     return(
         <Layer >
+            {console.log(cityStatusContent)}
+            {isCityStatusOpen && cityStatusContent.cityName && <CityStatusModal city={cityStatusContent}/>}
             {/*Turtleback Island*/}
             <Circle
+                onClick={() => {
+                    setCityStatusContent(cities.filter(c => c.cityName == "Turtleback Island")[0])
+                    setIsCityStatusOpen(true);
+                }}
                 x={stageWidth * 0.125}
                 y={stageHeight * 0.71}
                 radius={30}
