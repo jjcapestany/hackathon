@@ -1,17 +1,29 @@
-import { Stage, Layer, Rect, Circle } from 'react-konva';
+import {Stage, Layer, Image} from 'react-konva';
+import {useEffect, useState} from "react";
 
 const Map = () => {
+    const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
+
+    useEffect(() => {
+        const img = new window.Image();
+        img.src = "./island_map.png";
+        img.onload = () => {
+            setBackgroundImage(img);
+        };
+    }, []);
+
     return (
-        // Stage - is a div wrapper
-        // Layer - is an actual 2d canvas element, so you can have several layers inside the stage
-        // Rect and Circle are not DOM elements. They are 2d shapes on canvas
         <Stage width={window.innerWidth} height={window.innerHeight}>
             <Layer>
-                <Rect width={50} height={50} fill="red" />
-                <Circle x={200} y={200} stroke="black" radius={50} />
+                <Image
+                    image={backgroundImage}
+                    width={window.innerWidth}
+                    height={window.innerHeight}
+                    listening={false} // Ensures the background doesn't interfere with other interactions
+                />
             </Layer>
         </Stage>
-    );
+    )
 }
 
 export default Map;
