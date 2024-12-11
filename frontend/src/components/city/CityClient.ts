@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FoodType, MedicalType, WaterType} from "../aide/aideHelper.ts";
+import {FoodType, MedicalType, WaterType} from "../aide/AideHelper.ts";
 
 
 export type City = {
