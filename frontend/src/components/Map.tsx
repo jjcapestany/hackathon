@@ -4,6 +4,8 @@ import Cities from "./city/Cities.tsx";
 import {City, getCity} from "./city/CityClient.ts";
 
 const Map = () => {
+    const stageWidth = window.innerWidth;
+    const stageHeight = window.innerHeight;
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
     const [city, setCity] = useState<City[]>([{id: 0, cityName: "none", population: 0, xAxis: 0, yAxis: 0}])
 
@@ -18,16 +20,16 @@ const Map = () => {
     }, []);
 
     return (
-        <Stage width={window.innerWidth} height={window.innerHeight}>
+        <Stage width={stageWidth} height={stageHeight}>
             <Layer>
                 <Image
                     image={backgroundImage}
-                    width={window.innerWidth}
-                    height={window.innerHeight}
+                    width={stageWidth}
+                    height={stageHeight}
                     listening={false} // Ensures the background doesn't interfere with other interactions
                 />
             </Layer>
-            <Cities/>
+            <Cities stageWidth={stageWidth} stageHeight={stageHeight}/>
         </Stage>
     )
 }
