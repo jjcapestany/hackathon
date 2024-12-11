@@ -44,4 +44,5 @@ public class City {
     @OneToOne
     @Cascade(CascadeType.ALL)
     private Food food;
+
 }
