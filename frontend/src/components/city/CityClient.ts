@@ -1,11 +1,16 @@
 import axios from "axios";
+import {FoodType, MedicalType, WaterType} from "../aide/aideHelper.ts";
+
 
 export type City = {
-    id: number
     cityName: string
     population: number
     xAxis: number | null
     yAxis: number | null
+    fuel: number
+    water: WaterType | {}
+    food: FoodType | {}
+    aide: MedicalType | {}
 }
 
 export const getCity = async (): Promise<City[]> => {
