@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface CityRepo extends JpaRepository<City, Long> {
 
-    Optional<City> findByCityName(String cityName);
+    Optional<City> findByName(String name);
 }
