@@ -1,5 +1,5 @@
 import {City} from "./CityClient.ts";
-import {Paper} from "@mui/material";
+import {Label, Rect, Text} from "react-konva";
 
 type props = {
     city: City
@@ -7,7 +7,15 @@ type props = {
 
 const CityStatusModal = ({city}: props) => {
     return (
-        <Paper sx={{width: 100, height: 100}}>{city.cityName}</Paper>
+        <Label draggable={true}>
+            <Rect
+                width={100}
+                height={100}
+                fill="red"
+                shadowBlur={3}
+            />
+            <Text text={city.cityName}/>
+        </Label>
     )
 }
 
