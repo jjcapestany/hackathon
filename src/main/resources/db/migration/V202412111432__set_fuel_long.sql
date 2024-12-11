@@ -1,0 +1,5 @@
+ALTER TABLE city
+    DROP COLUMN fuel;
+
+ALTER TABLE city
+    ADD fuel BIGINT;

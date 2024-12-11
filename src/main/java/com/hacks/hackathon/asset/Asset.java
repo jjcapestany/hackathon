@@ -2,13 +2,11 @@ package com.hacks.hackathon.asset;
 
 import com.hacks.hackathon.city.City;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +14,13 @@ public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne
+    private AssetType assetType;
+    private Long waterOnhand;
+    private Long foodOnhand;
+    private Long medicalOnhand;
+    @ManyToOne
     private City location;
-    private Long waterCapacity;
-    private Long foodCapacity;
-    private Long aidCapacity;
-    private Double fuelUsageRate;
-    private Long speed;
+    private AssetType.AssetStatus status;
+    private Long travelDaysRemaining;
 }
