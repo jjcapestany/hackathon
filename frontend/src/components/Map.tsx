@@ -17,7 +17,6 @@ const Map = () => {
 
     // URL to your static image
     const imageUrl = '/island_map.png';
-
     return (
         <MapContainer
             scrollWheelZoom={false}

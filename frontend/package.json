@@ -21,9 +21,11 @@
     "@testing-library/user-event": "^14.5.2",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
+    "konva": "^9.3.16",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-konva": "^19.0.1",
     "react-leaflet": "^4.2.1",
     "vitest": "^2.1.8"
   },
