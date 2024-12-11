@@ -8,12 +8,6 @@ ALTER TABLE city
     ADD y_coord INTEGER;
 
 ALTER TABLE city
-    ALTER COLUMN x_coord SET NOT NULL;
-
-ALTER TABLE city
-    ALTER COLUMN y_coord SET NOT NULL;
-
-ALTER TABLE city
     DROP COLUMN city_name;
 
 ALTER TABLE city

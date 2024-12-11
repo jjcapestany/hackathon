@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AssetType {
-
+public class AssetType {
     public enum AssetTravelType {
         AIR,
         GROUND,
@@ -27,6 +26,7 @@ public abstract class AssetType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.ORDINAL)
     private AssetTravelType modeOfTravel;
     private Long waterCapacity;
     private Long foodCapacity;

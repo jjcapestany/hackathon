@@ -6,29 +6,41 @@ import com.hacks.hackathon.resources.Water;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Setter
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class City {
+    public City(String name, Integer population, Integer xCoord, Integer yCoord, Long fuel, Water water, Medical medical, Food food) {
+        this.name = name;
+        this.population = population;
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+        this.fuel = fuel;
+        this.water = water;
+        this.medical = medical;
+        this.food = food;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int population;
-    private int xCoord;
-    private int yCoord;
-    private int fuel;
+    private Integer population;
+    private Integer xCoord;
+    private Integer yCoord;
+    private Long fuel;
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(CascadeType.ALL)
     private Water water;
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(CascadeType.ALL)
     private Medical medical;
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Cascade(CascadeType.ALL)
     private Food food;
 }
