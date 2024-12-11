@@ -4,6 +4,7 @@ import Cities from "./city/Cities.tsx";
 import {City, getCity} from "./city/CityClient.ts";
 import IconExamples from "./IconExamples.tsx";
 import {MedicalType, WaterType} from "./aide/AideHelper.ts";
+import PopupExamples from "./PopupExamples.tsx";
 
 const Map = () => {
     const stageWidth = window.innerWidth;
@@ -34,6 +35,7 @@ const Map = () => {
             </Layer>
             <Cities stageWidth={stageWidth} stageHeight={stageHeight}/>
             <Layer><IconExamples /></Layer>
+            <Layer><PopupExamples /></Layer>
         </Stage>
     )
 }

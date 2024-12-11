@@ -37,7 +37,7 @@ const IconExamples = () => {
 
             <Group x={15} y={325} draggable>
                 <Text text={"TF Main"} />
-                <Circle x={50} y={40} radius={25} fill={"white"} />
+                <Circle x={50} y={40} radius={25} fill={"white"} stroke={"black"}/>
                 <Image x={35} y={25} width={30} height={30} image={baseImage}/>
             </Group>
 
@@ -55,7 +55,7 @@ const IconExamples = () => {
 
             <Group x={15} y={625} draggable>
                 <Text text={"Mangrove Coastline"} />
-                <Circle x={50} y={40} radius={25} fill={"#719D71"} />
+                <Circle x={50} y={40} radius={25} fill={"#719D71"}/>
                 <Image x={35} y={25} width={30} height={30} image={cityImage} />
             </Group>
         </>
