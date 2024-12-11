@@ -109,7 +109,15 @@ public class Graph {
 
         while (!unsettledNodes.isEmpty()) {
             AdjacencyMap currentNode = getLowestDistanceNode(unsettledNodes);
+            if (currentNode.getOriginCity().getName() == null || destinationCity.getName() == null) {
+                throw new IllegalStateException("City name cannot be null. City ID: " +
+                        currentNode.getOriginCity().getId() + " or " + destinationCity.getId());
+            }
 
+            if (currentNode.getOriginCity().getName().equals(destinationCity.getName())) {
+                destinationNode = currentNode;
+                break;
+            }
             // Check if we've reached the destination
             if (currentNode.getOriginCity().getName().equals(destinationCity.getName())) {
                 destinationNode = currentNode;

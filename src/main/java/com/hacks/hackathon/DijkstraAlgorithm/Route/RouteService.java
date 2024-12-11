@@ -30,6 +30,14 @@ public class RouteService {
         City destCity = cityRepository.findById(destCityId)
                 .orElseThrow(() -> new EntityNotFoundException("Destination city not found"));
 
+        // More detailed debugging
+        System.out.println("Source city details - ID: " + sourceCity.getId() +
+                ", Name: " + sourceCity.getName() +
+                ", DB column name: " + cityRepository.findNameById(sourceCityId));
+        System.out.println("Dest city details - ID: " + destCity.getId() +
+                ", Name: " + destCity.getName() +
+                ", DB column name: " + cityRepository.findNameById(destCityId));
+
         Graph graph = buildGraphFromDatabase(transportationType);
         AdjacencyMap sourceMap = findOrCreateAdjacencyMap(graph, sourceCity);
 
