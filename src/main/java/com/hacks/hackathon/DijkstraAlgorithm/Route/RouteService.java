@@ -111,10 +111,10 @@ public class RouteService {
     }
 
     public RouteDTO createRoute(RouteDTO routeDTO) {
-        City sourceCity = cityRepository.findByCityName(routeDTO.getSourceCityName())
+        City sourceCity = cityRepository.findByName(routeDTO.getSourceCityName())
                 .orElseThrow(() -> new EntityNotFoundException("Source city not found: " + routeDTO.getSourceCityName()));
 
-        City destCity = cityRepository.findByCityName(routeDTO.getDestinationCityName())
+        City destCity = cityRepository.findByName(routeDTO.getDestinationCityName())
                 .orElseThrow(() -> new EntityNotFoundException("Destination city not found: " + routeDTO.getDestinationCityName()));
 
         AdjacencyMapEntity sourceMap = adjacencyMapRepository.findByOriginCity(sourceCity)
