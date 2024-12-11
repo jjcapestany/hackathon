@@ -1,17 +1,8 @@
 ALTER TABLE city
-    ADD name VARCHAR(255);
+    RENAME COLUMN city_name to name;
 
 ALTER TABLE city
-    ADD x_coord INTEGER;
+    RENAME COLUMN x_axis to x_coord;
 
 ALTER TABLE city
-    ADD y_coord INTEGER;
-
-ALTER TABLE city
-    DROP COLUMN city_name;
-
-ALTER TABLE city
-    DROP COLUMN x_axis;
-
-ALTER TABLE city
-    DROP COLUMN y_axis;
+    RENAME COLUMN y_axis to y_coord;
