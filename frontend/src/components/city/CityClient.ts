@@ -1,20 +1,21 @@
 import axios from "axios";
-import {FoodType, MedicalType, WaterType} from "../aide/AideHelper.ts";
+import {Food, Medical, Water} from "../aide/AideHelper.ts";
 
 
 export type City = {
     id: number
-    cityName: string
+    name: string
     population: number
-    xAxis: number | null
-    yAxis: number | null
+    xCoord: number
+    yCoord: number
     fuel: number
-    water: WaterType | {}
-    food: FoodType | {}
-    aide: MedicalType | {}
+    water: Water
+    food: Food
+    medical: Medical
 }
 
 export const getCity = async (): Promise<City[]> => {
-    const result = await axios.get<City[]>(`http://localhost:8080/api/city`);
+    const result = await axios.get<City[]>(`http://localhost:8080/api/city/all`);
+    console.log(result.data)
     return result.data;
 }

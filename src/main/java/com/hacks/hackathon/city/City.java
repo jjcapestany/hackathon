@@ -31,8 +31,8 @@ public class City {
     private Long id;
     private String name;
     private Integer population;
-    private Integer xCoord;
-    private Integer yCoord;
+    private float xCoord;
+    private float yCoord;
     private Long fuel;
     @OneToOne
     @Cascade(CascadeType.ALL)

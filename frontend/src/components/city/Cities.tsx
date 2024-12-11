@@ -12,15 +12,15 @@ const Cities = ({cities}: CitiesProps) => {
     const [isCityStatusOpen, setIsCityStatusOpen] = useState(false);
     const [cityStatusContent, setCityStatusContent] = useState<City>({} as City)
 
-    const handleCityStatusClick = (cityName: string) => {
-        const selectedCity = cities.find(c => c.cityName === cityName);
+    const handleCityStatusClick = (name: string) => {
+        const selectedCity = cities.find(c => c.name === name);
         if (selectedCity) {
             setCityStatusContent(selectedCity);
             setIsCityStatusOpen(true);
         }
     };
 
-    console.log(cities[0].yAxis)
+    console.log(cities[0].yCoord)
 
     return (
         <>
@@ -30,11 +30,12 @@ const Cities = ({cities}: CitiesProps) => {
                 </Layer>
             )}
             <Layer>
-                {cities.map((c) => (
+                {cities.map((c, index) => (
                     <Circle
-                        onClick={() => handleCityStatusClick(c.cityName)}
-                        x={stageWidth * c.xAxis}
-                        y={stageHeight * c.yAxis}
+                        key={index}
+                        onClick={() => handleCityStatusClick(c.name)}
+                        x={stageWidth * c.xCoord}
+                        y={stageHeight * c.yCoord}
                         radius={30}
                         fill="green"
                     />
