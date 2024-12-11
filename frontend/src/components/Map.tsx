@@ -9,6 +9,7 @@ const Map = () => {
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
     const [city, setCity] = useState<City[]>([{id: 0, cityName: "none", population: 0, xAxis: 0, yAxis: 0}])
 
+
     useEffect(() => {
         getCity().then(setCity);
         console.log(city)
