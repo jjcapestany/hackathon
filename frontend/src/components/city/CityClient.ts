@@ -3,6 +3,7 @@ import {FoodType, MedicalType, WaterType} from "../aide/AideHelper.ts";
 
 
 export type City = {
+    id: number
     cityName: string
     population: number
     xAxis: number | null
