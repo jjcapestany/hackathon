@@ -1,5 +1,6 @@
 import {Stage, Layer, Image} from 'react-konva';
 import {useEffect, useState} from "react";
+import Cities from "./city/Cities.tsx";
 
 const Map = () => {
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
@@ -22,6 +23,7 @@ const Map = () => {
                     listening={false} // Ensures the background doesn't interfere with other interactions
                 />
             </Layer>
+            <Cities/>
         </Stage>
     )
 }
