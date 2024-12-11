@@ -27,12 +27,14 @@ public class CityControllerTest {
     ObjectMapper objectMapper;
     @Mock
     CityRepo cityRepo;
+    @Autowired
+    private CityService cityService;
 
     @Test
     public void createCityTest() throws Exception {
         City testCity = City.builder().cityName("Turtleback Island").population(30000).build();
-            when(cityRepo.findAll())
-                    .thenReturn(List.of(testCity));
+        cityRepo.saveAll(List.of(testCity));
+            when(cityRepo.save(testCity)).thenReturn(testCity);
         mockMvc.perform(get("/api/city"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].cityName").value(testCity.getCityName()))

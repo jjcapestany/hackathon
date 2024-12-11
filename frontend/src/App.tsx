@@ -3,7 +3,7 @@ import Map from "./components/Map.tsx";
 function App() {
 
     return (
-        <div style={{backgroundColor: "#c5ecff"}}>
+        <div style={{backgroundColor: "#121213"}}>
             <Map/>
         </div>
     )

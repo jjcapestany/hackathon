@@ -1,6 +1,8 @@
 package com.hacks.hackathon.city;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,12 +11,21 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 @RequestMapping("/api/city")
 public class CityController {
     private final CityRepo cityRepo;
 
     @GetMapping
-    List<City> getsCityData() {
-        return cityRepo.findAll();
+    public ResponseEntity<List<City>> getallCitiesById() {
+        List<City> cities = cityRepo.findAll();
+        return ResponseEntity.ok(cities);
     }
+
+
+//    @GetMapping
+//    public ResponseEntity<List<EntryDTO>> findEntriesBySoldierId(@RequestParam(name = "soldierId") Long soldierId) {
+//        List<EntryDTO> entries = service.findAllEntriesBySoldierId(soldierId);
+//        return ResponseEntity.ok(entries);
+//    }
 }

@@ -5,4 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public interface CityRepo extends JpaRepository<City, Long> {
+
 }
