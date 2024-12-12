@@ -67,14 +67,14 @@ const Map = () => {
     };
 
     const handleDrag = (pos: Vector2d) => {
-        console.log(imageRef.current?.x())
-        console.log(imageRef.current?.y())
-        console.log(pos)
+        if (!stageRef.current) {
+            return {x: pos.x, y: pos.y}
+        }
         return {
             x: clamp(pos.x, stageRef.current && (-IMAGE_WIDTH * stageRef.current?.scaleX() * 2) / 4,
-                stageRef.current && (IMAGE_WIDTH * stageRef.current?.scaleX() * 2) / 4),
+                IMAGE_WIDTH * stageRef.current?.scaleX() * 2) / 4,
             y: clamp(pos.y, stageRef.current && (-IMAGE_HEIGHT * stageRef.current?.scaleY() * 2) / 4,
-                stageRef.current && (IMAGE_HEIGHT * stageRef.current?.scaleY() * 2) / 4),
+                IMAGE_HEIGHT * stageRef.current?.scaleY() * 2) / 4,
         }
     }
 
