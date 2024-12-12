@@ -1,7 +1,8 @@
-import {Text, Group, Layer, Rect} from "react-konva";
+import {Group, Layer, Rect} from "react-konva";
 import {useEffect, useState} from "react";
 import {City} from "../city/CityClient.ts";
 import {Html} from "react-konva-utils";
+import TransferForm from "./TransferForm.tsx";
 
 type TransferRequestProps = {
   isOpen: boolean
@@ -10,7 +11,7 @@ type TransferRequestProps = {
 }
 
 const TransferRequest = ({isOpen, cities, selectedCity}: TransferRequestProps) => {
-  const [ open, setOpen ] = useState<boolean>(true)
+  const [open, setOpen] = useState<boolean>(true)
 
   useEffect(() => {
   }, []);
@@ -19,10 +20,10 @@ const TransferRequest = ({isOpen, cities, selectedCity}: TransferRequestProps) =
     <Layer>
       {open &&
         <Group draggable>
-          <Rect x={48} y={38} width={304} height={304} fill={"black"} />
-          <Rect x={50} y={40} width={300} height={300} fill={"#F5F5F5"} />
+          <Rect x={48} y={38} width={304} height={304} fill={"black"}/>
+          <Rect x={50} y={40} width={300} height={300} fill={"#F5F5F5"}/>
           <Html>
-            <Button></Button>
+            <TransferForm selectedCity={selectedCity} cities={cities}></TransferForm>
           </Html>
         </Group>
       }
