@@ -141,7 +141,7 @@ const Map = () => {
                     />
                 </Layer>
                 <Cities cities={cities} imageRef={imageRef}/>
-            </Stage>
+                </Stage>
         </Box>)
 }
 

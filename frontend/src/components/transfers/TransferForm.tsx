@@ -1,17 +1,5 @@
-import {
-    Box,
-    Button,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    Stack,
-    TextField,
-    Typography
-} from "@mui/material";
+import {Box, Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography} from "@mui/material";
 import {City} from "../city/CityClient.ts";
-import {NumberInput} from "@mui/base/Unstable_NumberInput/NumberInput";
 
 type TransferFormProps = {
     cities: City[]

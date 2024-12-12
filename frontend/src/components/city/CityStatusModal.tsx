@@ -6,10 +6,10 @@ import {Dispatch, SetStateAction} from "react";
 type props = {
     city: City
     setIsOpen: Dispatch<SetStateAction<boolean>>
-
+    setIsTransferOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const CityStatusModal = ({city, setIsOpen}: props) => {
+const CityStatusModal = ({city, setIsOpen, setIsTransferOpen}: props) => {
 
     return (
         <Group x={stageWidth * city.xcoord - 250} y={stageHeight * city.ycoord - 100} draggable={true}>
@@ -82,6 +82,7 @@ const CityStatusModal = ({city, setIsOpen}: props) => {
                     fill="black"
                     align="center"
                     verticalAlign="middle"
+                    onClick={()=> setIsTransferOpen(true)}
                     x={10}
                     y={8} // Center text within the button
                 />

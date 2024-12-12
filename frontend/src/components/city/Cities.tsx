@@ -18,6 +18,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
     const [cityStatusContent, setCityStatusContent] = useState<City>({} as City)
     const [cityImage, setCityImage] = useState<CanvasImageSource | undefined>(undefined);
     const [baseImage, setBaseImage] = useState<CanvasImageSource | undefined>(undefined);
+    const [transferModal, setIsTransferModal] = useState<boolean>(false)
 
 
     const handleCityStatusClick = (name: string) => {
@@ -73,12 +74,12 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
                     </Group>
                 ))}
             </Layer>
-            <TransferRequest isOpen={false} cities={cities} selectedCity={cities[0]}/>
             {isCityStatusOpen && cityStatusContent && (
                 <Layer>
-                    <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent}/>
+                    <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent} setIsTransferOpen={setIsTransferModal}/>
                 </Layer>
             )}
+            { transferModal && <TransferRequest cities={cities} selectedCity={cityStatusContent} setIsTransferOpen={setIsTransferModal}/>}
         </>
     )
 }
