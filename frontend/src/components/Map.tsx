@@ -59,7 +59,6 @@ const Map = () => {
 
             stage.scale({x: newScale, y: newScale});
             stage.position(newPos);
-            console.log(stage.position())
             stage.batchDraw(); // Redraw
         }
     };
@@ -68,11 +67,25 @@ const Map = () => {
         if (!stageRef.current) {
             return {x: pos.x, y: pos.y}
         }
+
+        console.log(stageRef.current.scale())
+
+        const getMaxWidth = () => {
+            const scaleX = stageRef.current ?
+                Math.max(stageRef.current?.scaleX() - MIN_ZOOM, 0.2) : 0;
+            return scaleX * IMAGE_WIDTH;
+        }
+        const getMaxHeight = () => {
+            const scaleY = stageRef.current ?
+                Math.max(stageRef.current?.scaleY() - MIN_ZOOM, 0.2) : 0;
+            return scaleY * IMAGE_HEIGHT;
+        }
+
         return {
-            x: clamp(pos.x, stageRef.current && (-IMAGE_WIDTH * stageRef.current?.scaleX() * 2) / 4,
-                IMAGE_WIDTH * stageRef.current?.scaleX() * 2) / 4,
-            y: clamp(pos.y, stageRef.current && (-IMAGE_HEIGHT * stageRef.current?.scaleY() * 2) / 4,
-                IMAGE_HEIGHT * stageRef.current?.scaleY() * 2) / 4,
+            x: clamp(pos.x, -getMaxWidth(),
+                getMaxWidth()),
+            y: clamp(pos.y, -getMaxHeight(),
+                getMaxHeight()),
         }
     }
 
