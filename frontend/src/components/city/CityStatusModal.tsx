@@ -10,14 +10,17 @@ const CityStatusModal = ({city}: props) => {
     return (
         <Label draggable={true}>
             <Rect
-                x={stageWidth * (city.xAxis - .020)}
-                y={stageHeight * (city.yAxis - .020)}
+                x={stageWidth * city.xcoord - 50}
+                y={stageHeight * city.ycoord - 140}
                 width={100}
                 height={100}
-                fill="red"
+                fill="tan"
                 shadowBlur={3}
             />
-            <Text text={city.cityName}/>
+            <Text
+                x={stageWidth * city.xcoord - 50}
+                y={stageHeight * city.ycoord - 140}
+                text={city.name}/>
         </Label>
     )
 }
