@@ -1,7 +1,7 @@
 import {City} from "./CityClient.ts";
-import {Group, Label, Rect, Text} from "react-konva";
+import {Group, Rect, Text} from "react-konva";
 import {stageHeight, stageWidth} from "../../types.ts";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction} from "react";
 
 type props = {
     city: City
@@ -12,20 +12,6 @@ type props = {
 const CityStatusModal = ({city, setIsOpen}: props) => {
 
     return (
-        // <Label>
-        //     <Rect
-        //
-        //         y={stageHeight * city.ycoord - 140}
-        //         width={100}
-        //         height={100}
-        //         fill="tan"
-        //         shadowBlur={3}
-        //     />
-        //     <Text
-        //         x={stageWidth * city.xcoord - 50}
-        //         y={stageHeight * city.ycoord - 140}
-        //         text={city.name}/>
-        // </Label>
         <Group x={stageWidth * city.xcoord - 250} y={stageHeight * city.ycoord - 100} draggable={true}>
             {/* Background Rectangle */}
             <Rect
@@ -44,20 +30,26 @@ const CityStatusModal = ({city, setIsOpen}: props) => {
                 x={10}
                 y={10}
             />
-            {/* Water Section */}
-            <Text text={`Water: ${(city.water.onHand / city.water.capacity * 100).toPrecision(4)}%`} fontSize={14} fill="#333" x={10} y={40}/>
-            <Text text={`${city.water.onHand} / ${city.water.capacity} gallons`} fontSize={12} fill="#555" x={10} y={55}/>
-            <Text text={`Usage: ${city.water.usageRate} gallons / day`} fontSize={12} fill="#555" x={10} y={70}/>
 
-            {/* Food Section */}
-            <Text text="Food: 50%" fontSize={14} fill="#333" x={10} y={90}/>
-            <Text text="50/100 lbs" fontSize={12} fill="#555" x={10} y={105}/>
-            <Text text="Usage: 20 lbs/day" fontSize={12} fill="#555" x={10} y={120}/>
+            <Text text={`Water: ${(city.water.onHand / city.water.capacity * 100).toPrecision(4)}%`}
+                  fontSize={14} fill="#333" x={10} y={40}/>
+            <Text text={`${city.water.onHand} / ${city.water.capacity} gallons`} fontSize={12} fill="#555"
+                  x={10} y={55}/>
+            <Text text={`Usage: ${city.water.usageRate} gallons / day`} fontSize={12} fill="#555" x={10}
+                  y={70}/>
 
-            {/* Medical Section */}
-            <Text text="Medical: 60%" fontSize={14} fill="#333" x={10} y={140}/>
-            <Text text="30/50 pallets" fontSize={12} fill="#555" x={10} y={155}/>
-            <Text text="Usage: 5 pallets/Day" fontSize={12} fill="#555" x={10} y={170}/>
+            <Text text={`Food: ${(city.food.onHand / city.food.capacity * 100).toPrecision(4)}%`} fontSize={14}
+                  fill="#333" x={10} y={90}/>
+            <Text text={`${city.food.onHand} / ${city.food.capacity} lbs`} fontSize={12} fill="#555" x={10}
+                  y={105}/>
+            <Text text={`Usage: ${city.food.usageRate} lbs / day`} fontSize={12} fill="#555" x={10} y={120}/>
+
+            <Text text={`Medical: ${(city.medical.onHand / city.medical.capacity * 100).toPrecision(4)}%`}
+                  fontSize={14} fill="#333" x={10} y={140}/>
+            <Text text={`${city.medical.onHand} / ${city.medical.capacity} pallets`} fontSize={12} fill="#555"
+                  x={10} y={155}/>
+            <Text text={`Usage: ${city.medical.usageRate} pallets / day`} fontSize={12} fill="#555" x={10}
+                  y={170}/>
 
             {/* Close Button */}
             <Text
