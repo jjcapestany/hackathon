@@ -8,7 +8,7 @@ type props = {
 
 const CityStatusModal = ({city}: props) => {
     return (
-        <Label draggable={true}>
+        <Label>
             <Rect
                 x={stageWidth * city.xcoord - 50}
                 y={stageHeight * city.ycoord - 140}

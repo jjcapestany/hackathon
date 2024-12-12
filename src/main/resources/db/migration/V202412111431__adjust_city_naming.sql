@@ -14,18 +14,18 @@ ALTER TABLE city
 
 
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (1, 'Coral Reef Community',150000, 0.88, 0.155, 0);
+VALUES (1, 'Coral Reef Community',150000, 0.850, 0.125, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (2, 'Turtleback Island', 30000, 0.125, 0.71, 0);
+VALUES (2, 'Turtleback Island', 30000, 0.095, 0.69, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (3, 'Sunset Cove District', 225000, 0.595, 0.49, 0);
+VALUES (3, 'Sunset Cove District', 225000, 0.565, 0.46, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (4, 'Mangrove Coastline', 350000, 0.425, 0.374, 0);
+VALUES (4, 'Mangrove Coastline', 350000, 0.395, 0.344, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (5, 'Lagoon Bay Village', 130000, 0.55, 0.285, 0);
+VALUES (5, 'Lagoon Bay Village', 130000, 0.520, 0.255, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (6, 'TF Main', 0, 0.485, 0.385, 0);
+VALUES (6, 'TF Main', 0, 0.455, 0.355, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (7, 'Stormbreaker Cliffs', 50000, 0.655, 0.36, 0);
+VALUES (7, 'Stormbreaker Cliffs', 50000, 0.625, 0.33, 0);
 INSERT INTO public.city (id, name, population, xcoord, ycoord, fuel)
-VALUES (8, 'Moonlit Cove', 80000, 0.58, 0.365, 0);
+VALUES (8, 'Moonlit Cove', 80000, 0.550, 0.335, 0);

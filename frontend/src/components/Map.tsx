@@ -2,7 +2,6 @@ import {Image, Layer, Stage} from 'react-konva';
 import {useEffect, useState} from "react";
 import Cities from "./city/Cities.tsx";
 import {City, getCity} from "./city/CityClient.ts";
-import IconExamples from "./IconExamples.tsx";
 import PopupExamples from "./PopupExamples.tsx";
 
 const Map = () => {
@@ -41,7 +40,7 @@ const Map = () => {
                     />
                 </Layer>
                 <Cities cities={city}/>
-                <Layer><IconExamples/></Layer>
+                {/*<Layer><IconExamples/></Layer>*/}
                 <Layer><PopupExamples/></Layer>
             </Stage> :
             <></>
