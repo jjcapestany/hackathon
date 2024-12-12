@@ -18,7 +18,7 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
   useEffect(() => {
     if ( assetType != '' && locationID != 0 ) {
       const result = getTimeToCity(locationID, selectedCity.id, assetType)
-        .then((res) => setTime(res))
+        .then((res) => setTime(Math.ceil(res/24)))
         .catch(() => setTime(0))
       console.log(result)
     }
@@ -109,7 +109,9 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                 </TextField>
             </Box>
             <Typography textAlign={'center'}>Estimated time of supply arrival:</Typography>
-            <Typography textAlign={'center'}>{`${time} day`}</Typography>
+            <Typography textAlign={'center'}>
+              {time > 1000 ? 'Route Unavailable':`${time} hours`}
+            </Typography>
             <Button
                 variant={'contained'}
                 color={'warning'}
