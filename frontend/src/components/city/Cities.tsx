@@ -128,7 +128,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
       <Layer>
         {cities.map((c, index) => (
           <Group key={index} x={(imageRef.current?.x() ?? 0) + IMAGE_WIDTH * c.xcoord}
-                 y={(imageRef.current?.y() ?? 0) + IMAGE_HEIGHT * c.ycoord} draggable
+                 y={(imageRef.current?.y() ?? 0) + IMAGE_HEIGHT * c.ycoord}
                  onClick={() => handleCityStatusClick(c.name)}>
             <Text text={c.name}/>
             <Circle x={50} y={40} radius={25}
