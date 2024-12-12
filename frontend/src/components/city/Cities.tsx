@@ -74,11 +74,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
                     </Group>
                 ))}
             </Layer>
-            {isCityStatusOpen && cityStatusContent && (
-                <Layer>
-                    <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent} setIsTransferOpen={setIsTransferModal}/>
-                </Layer>
-            )}
+            {isCityStatusOpen && cityStatusContent && <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent} setIsTransferOpen={setIsTransferModal}/>}
             { transferModal && <TransferRequest cities={cities} selectedCity={cityStatusContent} setIsTransferOpen={setIsTransferModal}/>}
         </>
     )
