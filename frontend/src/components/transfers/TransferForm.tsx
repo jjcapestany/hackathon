@@ -1,5 +1,6 @@
 import {Box, Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography} from "@mui/material";
-import {City} from "../city/CityClient.ts";
+import {City, getTimeToCity} from "../city/CityClient.ts";
+import {useEffect, useState} from "react";
 
 type TransferFormProps = {
     cities: City[]
@@ -7,6 +8,22 @@ type TransferFormProps = {
 }
 
 const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
+
+  const [locationID, setLocationID] = useState<number>(0)
+  const [assetType, setAssetType] = useState<string>('')
+  const [supplyAmount, setSupplyAmount] = useState<number>()
+  const [supplyType, setSupplyType] = useState<string>()
+  const [time, setTime] = useState<number>(0)
+
+  useEffect(() => {
+    if ( assetType != '' && locationID != 0 ) {
+      const result = getTimeToCity(locationID, selectedCity.id, assetType)
+        .then((res) => setTime(res))
+        .catch(() => setTime(0))
+      console.log(result)
+    }
+  }, [locationID,assetType]);
+  
     return (
         <Stack sx={{position: 'absolute', top: 40, left: 60, width: 275}} flexDirection={'column'} gap={1}>
             <Typography>
@@ -18,11 +35,12 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                 <Select
                     fullWidth
                     label="Transfer from:"
+                    onChange={(event) => setLocationID(event.target.value)}
                 >
                     {cities.filter((city) => city.name != selectedCity.name).map((city) => (
                         <MenuItem
                             key={city.name}
-                            value={city.name}
+                            value={city.id}
                         >
                             {city.name}
                         </MenuItem>
@@ -65,10 +83,12 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                         fullWidth
                         id="transport-type"
                         label="Transport"
+                        onChange={(event) => setAssetType(event.target.value)}
                     >
                         <MenuItem
                             key={'Air'}
-                            value={'Air'}>
+                            value={'Air'}
+                            >
                             Air
                         </MenuItem>
                         <MenuItem
@@ -89,7 +109,7 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                 </TextField>
             </Box>
             <Typography textAlign={'center'}>Estimated time of supply arrival:</Typography>
-            <Typography textAlign={'center'}>1 day</Typography>
+            <Typography textAlign={'center'}>{`${time} day`}</Typography>
             <Button
                 variant={'contained'}
                 color={'warning'}
