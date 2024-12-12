@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RouteDTO {
-    private Long id;
     private String sourceCityName;
     private String destinationCityName;
     private String transportationType;

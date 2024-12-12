@@ -10,10 +10,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -88,24 +85,31 @@ public class RouteService {
             return new PathResultDTO(
                     false,
                     result.getTransportationType(),
-                    Integer.MAX_VALUE,  // Changed from 0 to Integer.MAX_VALUE
+                    Integer.MAX_VALUE,
                     new ArrayList<>(),
                     new ArrayList<>()
             );
         }
 
-        List<String> cityNames = result.getPath().stream()
-                .map(City::getName)
+        List<Long> cityIds = result.getPath().stream()
+                .map(City::getId)
                 .collect(Collectors.toList());
 
         List<RouteDTO> routes = new ArrayList<>();
         for (int i = 0; i < result.getPath().size() - 1; i++) {
+            String sourceCityName = result.getPath().get(i).getName();
+            String destinationCityName = result.getPath().get(i + 1).getName();
+            String type = result.getTransportationType();
+            Integer cost = routeRepository.findRouteEntitiesBySourceNameDestinationNameAndTransportationType(
+                    sourceCityName,
+                    destinationCityName,
+                    type
+            ).orElseThrow(() -> new EntityNotFoundException("Route not found")).getCost();
             routes.add(new RouteDTO(
-                    null,
-                    result.getPath().get(i).getName(),
-                    result.getPath().get(i + 1).getName(),
-                    result.getTransportationType(),
-                    null // Cost will be filled from database
+                    sourceCityName,
+                    destinationCityName,
+                    type,
+                    cost
             ));
         }
 
@@ -113,7 +117,7 @@ public class RouteService {
                 result.isPathFound(),
                 result.getTransportationType(),
                 result.getTotalDistance(),
-                cityNames,
+                cityIds,
                 routes
         );
     }
@@ -143,12 +147,10 @@ public class RouteService {
         route.setSourceMap(sourceMap);
         route.setDestinationMap(destMap);
         route.setTransportationType(routeDTO.getTransportationType());
-        route.setCost(routeDTO.getCost());
 
         RouteEntity savedRoute = routeRepository.save(route);
 
         return new RouteDTO(
-                savedRoute.getId(),
                 sourceCity.getName(),
                 destCity.getName(),
                 savedRoute.getTransportationType(),
@@ -164,7 +166,6 @@ public class RouteService {
 
     private RouteDTO convertToDTO(RouteEntity route) {
         return new RouteDTO(
-                route.getId(),
                 route.getSourceMap().getOriginCity().getName(),
                 route.getDestinationMap().getOriginCity().getName(),
                 route.getTransportationType(),
