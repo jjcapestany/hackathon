@@ -4,6 +4,7 @@ import CityStatusModal from "./CityStatusModal.tsx";
 import base from "../../assets/base.png"
 import {MutableRefObject, useEffect, useState} from "react";
 import city_black from "../../assets/city_black.png";
+import TransferRequest from "../transfers/TransferRequest.tsx";
 import Konva from "konva";
 import {IMAGE_HEIGHT, IMAGE_WIDTH} from "../Map.tsx";
 
@@ -72,6 +73,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
                     </Group>
                 ))}
             </Layer>
+            <TransferRequest isOpen={false} cities={cities} selectedCity={cities[0]}/>
             {isCityStatusOpen && cityStatusContent && (
                 <Layer>
                     <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent}/>
