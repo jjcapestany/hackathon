@@ -6,7 +6,6 @@ import PopupExamples from "./PopupExamples.tsx";
 import {Box} from "@mui/material";
 import Konva from "konva";
 import {Vector2d} from "konva/lib/types";
-import {Node} from "konva/lib/Node";
 
 
 export const MIN_ZOOM = 0.8;
@@ -14,7 +13,7 @@ export const MAX_ZOOM = 1.3;
 export const IMAGE_WIDTH = 2100
 export const IMAGE_HEIGHT = 1280
 
-function clamp(val, min, max) {
+function clamp(val: number, min: number, max: number) {
     return val > max ? max : val < min ? min : val
 }
 
