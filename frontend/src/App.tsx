@@ -1,6 +1,6 @@
 import Map from "./components/Map.tsx";
 
-function App() {
+const App = () => {
     return (
         <>
             <Map />

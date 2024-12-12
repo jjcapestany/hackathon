@@ -1,12 +1,15 @@
-export type WaterType = {
-    waterOnhand: number
-    waterCapacity: number
+export type Water = {
+    onHand: number
+    capacity: number
+    useageRate: number
 }
-export type FoodType = {
-    foodOnhand: number
-    foodCapacity: number
+export type Food = {
+    onHand: number
+    capacity: number
+    useageRate: number
 }
-export type MedicalType = {
-    medicalOnhand: number
-    medicalCapacity: number
+export type Medical = {
+    onHand: number
+    capacity: number
+    useageRate: number
 }
