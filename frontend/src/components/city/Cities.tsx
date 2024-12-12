@@ -36,11 +36,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
 
     return (
         <>
-            {isCityStatusOpen && cityStatusContent && (
-                <Layer>
-                    <CityStatusModal city={cityStatusContent}/>
-                </Layer>
-            )}
+
             <Layer>
                 {cities.map((c, index) => (
                     <Group key={index} x={(imageRef.current?.x() ?? 0) + IMAGE_WIDTH * c.xcoord}
@@ -52,6 +48,11 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
                     </Group>
                 ))}
             </Layer>
+            {isCityStatusOpen && cityStatusContent && (
+                <Layer>
+                    <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent}/>
+                </Layer>
+            )}
         </>
     )
 }

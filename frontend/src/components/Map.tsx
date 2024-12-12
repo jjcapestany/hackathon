@@ -2,7 +2,6 @@ import {Image, Layer, Stage} from 'react-konva';
 import {useEffect, useRef, useState} from "react";
 import Cities from "./city/Cities.tsx";
 import {City, getCity} from "./city/CityClient.ts";
-import PopupExamples from "./PopupExamples.tsx";
 import {Box} from "@mui/material";
 import Konva from "konva";
 import {Vector2d} from "konva/lib/types";
@@ -126,7 +125,7 @@ const Map = () => {
                     <Cities cities={city} imageRef={imageRef}/>
 
                     {/*<Layer><IconExamples/></Layer>*/}
-                    <Layer><PopupExamples/></Layer>
+                    {/*<Layer><PopupExamples/></Layer>*/}
                 </Stage> :
                 <></>}
         </Box>)
