@@ -22,7 +22,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
     const handleCityStatusClick = (name: string) => {
         const selectedCity = cities.find(c => c.name === name);
         if (selectedCity) {
-            setCityStatusContent(selectedCity);
+            setCityStatusContent(selectedCity)
             setIsCityStatusOpen(true);
         }
     };
@@ -62,7 +62,7 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
                         <Circle x={50} y={40} radius={25}
                                 fill={c.name == "TF Main" ? "grey" : getColor(c)}/>
                         {c.name == "TF Main" ? <Image x={35} y={25} width={30} height={30} image={baseImage}/> :
-                            <Image  x={35} y={25} width={30} height={30} image={cityImage}/>}
+                            <Image x={35} y={25} width={30} height={30} image={cityImage}/>}
                     </Group>
                 ))}
             </Layer>

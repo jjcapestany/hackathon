@@ -23,7 +23,6 @@ const Map = () => {
     });
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
     const [city, setCity] = useState<City[]>([{} as City])
-    const [isLoading, setIsLoading] = useState<boolean>(true)
     const [_, setScale] = useState<number>(1);
     const stageRef = useRef<Konva.Stage | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -78,10 +77,8 @@ const Map = () => {
     }
 
     useEffect(() => {
-        setIsLoading(true)
         getCity().then((response) => {
             setCity(response)
-            setIsLoading(false)
         });
 
         const img = new window.Image();
@@ -89,6 +86,13 @@ const Map = () => {
         img.onload = () => {
             setBackgroundImage(img);
         }
+        const intervalId = setInterval(() => {
+            getCity().then((response) => {
+                setCity(response)
+                console.log(city)
+            });
+        }, 6000)
+
 
         // Update the size of the canvas on window resize
         window.addEventListener('resize', updateStageSize);
@@ -96,38 +100,38 @@ const Map = () => {
         updateStageSize(); // Initial call
         return () => {
             window.removeEventListener('resize', updateStageSize);
+            clearInterval(intervalId)
         };
     }, []);
 
 
     return (
         <Box ref={containerRef} height={"100%"} width={"100%"}>
-            {!isLoading ?
-                < Stage
-                    draggable
-                    dragBoundFunc={handleDrag}
-                    onWheel={handleWheel}
-                    ref={stageRef}
-                    width={stageSize.width}
-                    height={stageSize.height}
-                >
-                    < Layer>
-                        < Image
-                            ref={imageRef}
-                            image={backgroundImage}
-                            x={(stageSize.width - IMAGE_WIDTH) / 2}
-                            y={(stageSize.height - IMAGE_HEIGHT) / 2}
-                            width={IMAGE_WIDTH}
-                            height={IMAGE_HEIGHT}
-                            listening={false} // Ensures the background doesn't interfere with other interactions
-                        />
-                    </Layer>
-                    <Cities cities={city} imageRef={imageRef}/>
 
-                    {/*<Layer><IconExamples/></Layer>*/}
-                    {/*<Layer><PopupExamples/></Layer>*/}
-                </Stage> :
-                <></>}
+            < Stage
+                draggable
+                dragBoundFunc={handleDrag}
+                onWheel={handleWheel}
+                ref={stageRef}
+                width={stageSize.width}
+                height={stageSize.height}
+            >
+                < Layer>
+                    < Image
+                        ref={imageRef}
+                        image={backgroundImage}
+                        x={(stageSize.width - IMAGE_WIDTH) / 2}
+                        y={(stageSize.height - IMAGE_HEIGHT) / 2}
+                        width={IMAGE_WIDTH}
+                        height={IMAGE_HEIGHT}
+                        listening={false} // Ensures the background doesn't interfere with other interactions
+                    />
+                </Layer>
+                <Cities cities={city} imageRef={imageRef}/>
+
+                {/*<Layer><IconExamples/></Layer>*/}
+                {/*<Layer><PopupExamples/></Layer>*/}
+            </Stage>
         </Box>)
 }
 
