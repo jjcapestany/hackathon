@@ -1,16 +1,20 @@
 import {City} from "./CityClient.ts";
 import {Group, Label, Rect, Text} from "react-konva";
 import {stageHeight, stageWidth} from "../../types.ts";
+import {Dispatch, SetStateAction, useState} from "react";
 
 type props = {
     city: City
+    setIsOpen: Dispatch<SetStateAction<boolean>>
+
 }
 
-const CityStatusModal = ({city}: props) => {
+const CityStatusModal = ({city, setIsOpen}: props) => {
+
     return (
         // <Label>
         //     <Rect
-        //         x={stageWidth * city.xcoord - 50}
+        //
         //         y={stageHeight * city.ycoord - 140}
         //         width={100}
         //         height={100}
@@ -22,7 +26,7 @@ const CityStatusModal = ({city}: props) => {
         //         y={stageHeight * city.ycoord - 140}
         //         text={city.name}/>
         // </Label>
-        <Group x={100} y={50} draggable={true}>
+        <Group x={stageWidth * city.xcoord - 250} y={stageHeight * city.ycoord - 100} draggable={true}>
             {/* Background Rectangle */}
             <Rect
                 width={200}
@@ -31,8 +35,9 @@ const CityStatusModal = ({city}: props) => {
                 cornerRadius={5}
             />
             {/* Title */}
+
             <Text
-                text="City Name"
+                text={city.name}
                 fontSize={16}
                 fontStyle="bold"
                 fill="#333"
@@ -40,19 +45,19 @@ const CityStatusModal = ({city}: props) => {
                 y={10}
             />
             {/* Water Section */}
-            <Text text="Water: 42.5%" fontSize={14} fill="#333" x={10} y={40} />
-            <Text text="100/200 gals" fontSize={12} fill="#555" x={10} y={55} />
-            <Text text="Usage: 10 gal/day" fontSize={12} fill="#555" x={10} y={70} />
+            <Text text={`Water: ${(city.water.onHand / city.water.capacity * 100).toPrecision(4)}%`} fontSize={14} fill="#333" x={10} y={40}/>
+            <Text text={`${city.water.onHand} / ${city.water.capacity} gallons`} fontSize={12} fill="#555" x={10} y={55}/>
+            <Text text={`Usage: ${city.water.usageRate} gallons / day`} fontSize={12} fill="#555" x={10} y={70}/>
 
             {/* Food Section */}
-            <Text text="Food: 50%" fontSize={14} fill="#333" x={10} y={90} />
-            <Text text="50/100 lbs" fontSize={12} fill="#555" x={10} y={105} />
-            <Text text="Usage: 20 lbs/day" fontSize={12} fill="#555" x={10} y={120} />
+            <Text text="Food: 50%" fontSize={14} fill="#333" x={10} y={90}/>
+            <Text text="50/100 lbs" fontSize={12} fill="#555" x={10} y={105}/>
+            <Text text="Usage: 20 lbs/day" fontSize={12} fill="#555" x={10} y={120}/>
 
             {/* Medical Section */}
-            <Text text="Medical: 60%" fontSize={14} fill="#333" x={10} y={140} />
-            <Text text="30/50 pallets" fontSize={12} fill="#555" x={10} y={155} />
-            <Text text="Usage: 5 pallets/Day" fontSize={12} fill="#555" x={10} y={170} />
+            <Text text="Medical: 60%" fontSize={14} fill="#333" x={10} y={140}/>
+            <Text text="30/50 pallets" fontSize={12} fill="#555" x={10} y={155}/>
+            <Text text="Usage: 5 pallets/Day" fontSize={12} fill="#555" x={10} y={170}/>
 
             {/* Close Button */}
             <Text
@@ -62,15 +67,16 @@ const CityStatusModal = ({city}: props) => {
                 x={180}
                 y={10}
                 onClick={() => {
-                    console.log("closed")}}
-                style={{ cursor: "pointer" }}
+                    setIsOpen(false)
+                }}
+                style={{cursor: "pointer"}}
             />
             {/* Button at the Bottom */}
             <Group
                 x={50} // Center the button horizontally
                 y={190} // Position below the medical section
                 onClick={() => console.log("Start Transfer")}
-                style={{ cursor: "pointer" }}
+                style={{cursor: "pointer"}}
             >
                 <Rect
                     width={100}

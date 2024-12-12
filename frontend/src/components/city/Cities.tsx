@@ -34,20 +34,22 @@ const Cities = ({cities}: CitiesProps) => {
 
     return (
         <>
-            {isCityStatusOpen && cityStatusContent && (
-                <Layer>
-                    <CityStatusModal city={cityStatusContent}/>
-                </Layer>
-            )}
+
             <Layer>
                 {cities.map((c, index) => (
-                    <Group key={index} x={stageWidth * c.xcoord} y={stageHeight * c.ycoord} draggable onClick={() => handleCityStatusClick(c.name)}>
-                        <Text text={c.name} />
-                        <Circle x={50} y={40} radius={25} fill={"#ffff66"} />
-                        <Image x={35} y={25} width={30} height={30} image={cityImage} />
+                    <Group key={index} x={stageWidth * c.xcoord} y={stageHeight * c.ycoord} draggable
+                           onClick={() => handleCityStatusClick(c.name)}>
+                        <Text text={c.name}/>
+                        <Circle x={50} y={40} radius={25} fill={"#ffff66"}/>
+                        <Image x={35} y={25} width={30} height={30} image={cityImage}/>
                     </Group>
                 ))}
             </Layer>
+            {isCityStatusOpen && cityStatusContent && (
+                <Layer>
+                    <CityStatusModal setIsOpen={setIsCityStatusOpen} city={cityStatusContent}/>
+                </Layer>
+            )}
         </>
     )
 }
