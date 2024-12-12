@@ -6,8 +6,8 @@ export type City = {
     id: number
     name: string
     population: number
-    xCoord: number
-    yCoord: number
+    xcoord: number
+    ycoord: number
     fuel: number
     water: Water
     food: Food

@@ -15,11 +15,12 @@ import org.hibernate.annotations.CascadeType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class City {
-    public City(String name, Integer population, Integer xCoord, Integer yCoord, Long fuel, Water water, Medical medical, Food food) {
+    public City(String name, Integer population, float xCoord, float yCoord, Long fuel, Water water
+            , Medical medical, Food food) {
         this.name = name;
         this.population = population;
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+        this.xcoord = xCoord;
+        this.ycoord = yCoord;
         this.fuel = fuel;
         this.water = water;
         this.medical = medical;
@@ -31,8 +32,8 @@ public class City {
     private Long id;
     private String name;
     private Integer population;
-    private float xCoord;
-    private float yCoord;
+    private float xcoord;
+    private float ycoord;
     private Long fuel;
     @OneToOne
     @Cascade(CascadeType.ALL)

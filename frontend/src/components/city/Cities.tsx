@@ -20,7 +20,7 @@ const Cities = ({cities}: CitiesProps) => {
         }
     };
 
-    console.log(cities[0].yCoord)
+    console.log(cities[0].ycoord)
 
     return (
         <>
@@ -34,8 +34,8 @@ const Cities = ({cities}: CitiesProps) => {
                     <Circle
                         key={index}
                         onClick={() => handleCityStatusClick(c.name)}
-                        x={stageWidth * c.xCoord}
-                        y={stageHeight * c.yCoord}
+                        x={stageWidth * c.xcoord}
+                        y={stageHeight * c.ycoord}
                         radius={30}
                         fill="green"
                     />
