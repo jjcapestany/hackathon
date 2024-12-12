@@ -22,7 +22,7 @@ const Map = () => {
         height: window.innerHeight,
     });
     const [backgroundImage, setBackgroundImage] = useState<CanvasImageSource | undefined>(undefined);
-    const [city, setCity] = useState<City[]>([{} as City])
+    const [cities, setCities] = useState<City[]>([{} as City])
     const [_, setScale] = useState<number>(1);
     const stageRef = useRef<Konva.Stage | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -78,21 +78,21 @@ const Map = () => {
 
     useEffect(() => {
         getCity().then((response) => {
-            setCity(response)
+            setCities(response)
         });
+
+        const intervalId = setInterval(() => {
+            console.log('Update City Array')
+            getCity().then((response) => {
+                setCities(response)
+            });
+        }, 6000)
 
         const img = new window.Image();
         img.src = "./island_map.png";
         img.onload = () => {
             setBackgroundImage(img);
         }
-        const intervalId = setInterval(() => {
-            getCity().then((response) => {
-                setCity(response)
-                console.log(city)
-            });
-        }, 6000)
-
 
         // Update the size of the canvas on window resize
         window.addEventListener('resize', updateStageSize);
@@ -116,8 +116,8 @@ const Map = () => {
                 width={stageSize.width}
                 height={stageSize.height}
             >
-                < Layer>
-                    < Image
+                <Layer>
+                    <Image
                         ref={imageRef}
                         image={backgroundImage}
                         x={(stageSize.width - IMAGE_WIDTH) / 2}
@@ -127,10 +127,7 @@ const Map = () => {
                         listening={false} // Ensures the background doesn't interfere with other interactions
                     />
                 </Layer>
-                <Cities cities={city} imageRef={imageRef}/>
-
-                {/*<Layer><IconExamples/></Layer>*/}
-                {/*<Layer><PopupExamples/></Layer>*/}
+                <Cities cities={cities} imageRef={imageRef}/>
             </Stage>
         </Box>)
 }

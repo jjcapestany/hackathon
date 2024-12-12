@@ -38,6 +38,12 @@ const Cities = ({cities, imageRef}: CitiesProps) => {
         loadImage(base, setBaseImage)
     }, []);
 
+    useEffect(() => {
+        if (cities.find(c => c.name === cityStatusContent.name)) {
+            setCityStatusContent(cities.find(c => c.name === cityStatusContent.name)!)
+        }
+    }, [cities]);
+
     const getColor = (c: City) => {
 
         if ((c.water.onHand / c.water.capacity < .2)
