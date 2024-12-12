@@ -43,13 +43,11 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                 </FormControl>
             </Box>
             <Box>
-                <InputLabel
-                    id="aid-type-helper">Aid:</InputLabel>
+                <FormControl fullWidth>
+                <InputLabel>Aid</InputLabel>
                 <Select
                     fullWidth
-                    labelId="aid-type-helper"
-                    id="aid-type"
-                    label="Transfer from:"
+                    label="Aid"
                 >
                     <MenuItem
                         key={'Water'}
@@ -70,6 +68,7 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                         Medical
                     </MenuItem>
                 </Select>
+                </FormControl>
             </Box>
             <Box>
                 <FormControl fullWidth>
@@ -101,6 +100,8 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
                 <TextField label={'Amount to Transfer'} type={"number"} fullWidth>
                 </TextField>
             </Box>
+            <Typography textAlign={'center'}>Estimated time of supply arrival:</Typography>
+            <Typography textAlign={'center'}>1 day</Typography>
             <Button
                 variant={'contained'}
                 color={'warning'}

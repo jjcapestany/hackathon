@@ -20,8 +20,8 @@ const TransferRequest = ({isOpen, cities, selectedCity}: TransferRequestProps) =
     <Layer>
       {open &&
         <Group draggable>
-          <Rect x={48} y={20} width={304} height={452} fill={"black"}/>
-          <Rect x={50} y={40} width={300} height={430} fill={"#F5F5F5"}/>
+          <Rect x={48} y={20} width={304} height={422} fill={"black"}/>
+          <Rect x={50} y={40} width={300} height={400} fill={"#F5F5F5"}/>
           <Html>
             <TransferForm selectedCity={selectedCity} cities={cities}></TransferForm>
           </Html>
