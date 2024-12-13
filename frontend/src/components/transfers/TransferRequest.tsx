@@ -29,7 +29,7 @@ const TransferRequest = ({cities, selectedCity, setIsTransferOpen}: TransferRequ
             style={{cursor: "pointer"}}
           />
           <Html>
-            <TransferForm selectedCity={selectedCity} cities={cities}></TransferForm>
+            <TransferForm selectedCity={selectedCity} cities={cities} setIsTransferOpen={setIsTransferOpen}></TransferForm>
           </Html>
         </Group>
     </Layer>

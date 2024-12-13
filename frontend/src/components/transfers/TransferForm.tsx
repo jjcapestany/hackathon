@@ -1,13 +1,14 @@
 import {Box, Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography} from "@mui/material";
 import {City, getTimeToCity} from "../city/CityClient.ts";
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 
 type TransferFormProps = {
     cities: City[]
     selectedCity: City
+    setIsTransferOpen:Dispatch<SetStateAction<boolean>>
 }
 
-const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
+const TransferForm = ({cities, selectedCity, setIsTransferOpen}: TransferFormProps) => {
 
   const [locationID, setLocationID] = useState<number>(0)
   const [assetType, setAssetType] = useState<string>('')
@@ -115,6 +116,7 @@ const TransferForm = ({cities, selectedCity}: TransferFormProps) => {
             <Button
                 variant={'contained'}
                 color={'warning'}
+                onClick={()=> setIsTransferOpen(false)}
             >
                 Start Transfer
             </Button>
